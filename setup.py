@@ -19,6 +19,10 @@ setup(name='cssocialprofile',
       zip_safe=False,
       install_requires=[
           # -*- Extra requirements: -*-
+          'django-social-auth',
+          'django-registration',
+          'tweepy',
+          'pyfacebook'
       ],
       entry_points="""
       # -*- Entry points: -*-
