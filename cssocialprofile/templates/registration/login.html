@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Login</h1>
+
+
+{% if user.is_authenticated %}
+<p>Saioa hasita daukazu dagoeneko</p>
+{% else %}
+<form method="post" action="{% url cssocialprofile_user_login %}">
+{% csrf_token %}
+{% if form.errors %}
+<p class="error">Zure erabiltzaile izena eta pasahitza ez daude ondo. Saiatu berriro!</p>
+{% endif %}
+
+
+<p><label for="username">Erabiltzaile izena</label>
+{{ form.username }}</p>
+<p><label for="password">Pasahitza</label>
+{{ form.password }}</p>
+<p>
+<input type="submit" value=" Sartu " />
+<input type="hidden" name="next" value="{{ next }}" />
+</p>
+
+</form>
+<ul>
+<li><a href="{% url cssocialprofile_password_reset %}">Pasahitza ahaztu zait</a></li>
+<li><a href="{% url cssocialprofile_register %}">Erabiltzaile berria naiz eta izena eman nahi dut</a></li>
+</ul>
+
+
+{% endif %}
+
+{% endblock %}
+
+
+{% block sidebar %}
+<h3>Saioa hasi Facebook edo Twitter bidez</h3>
+<p>
+<a rel="nofollow" href="{% url socialauth_begin "twitter" %}{% if next %}?next={{next}}{% endif %}"><img src="http://si0.twimg.com/images/dev/buttons/sign-in-with-twitter-d.png" alt="Twitter ikonoa" /></a> 
+<a rel="nofollow" href="{% url socialauth_begin "facebook" %}{% if next %}?next={{next}}{% endif %}"><img src="http://sanleandro.patch.com/images/facebook-login-button.png" alt="Facebook ikonoa" /></a>
+</p>
+<h3>Izena eman</h3>
+<form action="{% url cssocialprofile_register %}">
+<p>Erabiltzaile berria naiz eta izena eman nahi dut</p>
+<input type="submit" value="Izena eman" />
+</form>
+
+{% endblock %}

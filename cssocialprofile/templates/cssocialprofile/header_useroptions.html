@@ -1,0 +1,14 @@
+<div id="useroptions">
+{% if user.is_authenticated %}
+{% if user.userprofile.get_photo %}
+<img class="userlogged" width="30" height="30" src="{{user.userprofile.get_photo.get_profile_small_url}}" alt="Erabiltzailearen aurpegia" />
+{% endif %}
+<a href="{% url cssocialprofile_user_index user.username  %}">{{ user.userprofile.get_fullname }} ({{user.username}})</a>
+<a href="{% url cssocialprofile_user_edit user.username %}">Profile</a>
+<a href="{% url cssocialprofile_logout %}?next={{request.path}}">Logout</a>
+
+{%else%}
+<a href="{% url cssocialprofile_user_login %}?next={{request.path}}">Login</a>
+{%endif%}
+
+</div>
