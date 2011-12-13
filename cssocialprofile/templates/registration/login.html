@@ -1,5 +1,5 @@
 {% extends "registration/base.html" %}
-{% block content %}
+{% block cscontent %}
 
 <h1>Login</h1>
 
@@ -37,7 +37,7 @@
 {% endblock %}
 
 
-{% block sidebar %}
+{% block cssidebar %}
 <h3>Saioa hasi Facebook edo Twitter bidez</h3>
 <p>
 <a rel="nofollow" href="{% url socialauth_begin "twitter" %}{% if next %}?next={{next}}{% endif %}"><img src="http://si0.twimg.com/images/dev/buttons/sign-in-with-twitter-d.png" alt="Twitter ikonoa" /></a> 

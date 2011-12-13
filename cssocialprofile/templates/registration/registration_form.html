@@ -1,5 +1,5 @@
 {% extends "registration/base.html" %}
-{% block content %}
+{% block cscontent %}
 <h1>Izena eman</h1>
 {% if user.is_authenticated %}
 <h2>Saioa hasita daukazu dagoeneko</h2>
@@ -42,7 +42,7 @@
 </form>
 {% endif %}
 {% endblock %}
-{% block sidebar %}
+{% block cssidebar %}
 <h3>Izena eman Facebook edo Twitter bidez</h3>
 <p>
 <a rel="nofollow" href="{% url socialauth_begin "twitter" %}{% if next %}?next={{next}}{% endif %}"><img src="http://si0.twimg.com/images/dev/buttons/sign-in-with-twitter-d.png" alt="Twitter ikonoa" /></a> 
