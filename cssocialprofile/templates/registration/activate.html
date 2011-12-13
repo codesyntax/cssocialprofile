@@ -1,0 +1,18 @@
+{% extends "registration/base.html" %}
+{% block content %}
+{% if account %}
+<h1>Kontua ondo aktibatu da</h1>
+<p>
+Zure erabiltzailea ondo sortu da. Sartu dituzun datuak erabili ditzazkezu <a href="{% url cssocialprofile_user_login %}">{{ site.name }} webgunean sartzeko</a>
+</p>
+
+{% else %}
+<h1>Ezin kontua aktibatu</h1>
+<p>
+Arazoren bat egon da zure kontua aktubatzerakoan. Litekeena da zure lotura iraungituta egotea. 
+Saiatu zaitez berriro mesedez.
+</p>
+   {% endif %}
+{% endblock %}
+{% block sidebar %}
+{% endblock %}

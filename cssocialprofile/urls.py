@@ -3,6 +3,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic.simple import direct_to_template
 
 from registration.forms import RegistrationFormUniqueEmail
+from django.contrib.auth.views import password_reset
 
 
 urlpatterns = patterns('cssocialprofile.views',
@@ -10,12 +11,25 @@ urlpatterns = patterns('cssocialprofile.views',
     )
 
 urlpatterns += patterns('',
+    (r'^accounts/', include('registration.urls')),
     (r'^social/', include('social_auth.urls')),
-    url(r'^login$','django.contrib.auth.views.login', name='cssocialprofile_user_login'),    
     url(r'^logout$','django.contrib.auth.views.logout', name='cssocialprofile_logout'),
+    url(r'^login$','django.contrib.auth.views.login', name='cssocialprofile_user_login'),
+)
+
+
+"""
+
+urlpatterns += patterns('',
+    #(r'^accounts/', include('registration.urls')),
+    #(r'^social/', include('social_auth.urls')),
+    #url(r'^login$','django.contrib.auth.views.login', name='cssocialprofile_user_login'),
+    
+    
+
     url(r'^password_reset$',
         'django.contrib.auth.views.password_reset',
-        {'template_name':'registration/password_reset.html','post_reset_redirect':'/erabiltzaileak/pasahitza_nola_aldatu'},
+        {'template_name':'registration/password_reset.html'},
         name='cssocialprofile_password_reset'),
     url(r'^password_reset_done$',
         'django.contrib.auth.views.password_reset_done',
@@ -23,7 +37,7 @@ urlpatterns += patterns('',
         name='cssocialprofile_password_reset_done'),                       
     url(r'^password_reset_confirm/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$',
         'django.contrib.auth.views.password_reset_confirm',
-        {'template_name':'registration/password_reset_confirm.html','post_reset_redirect':'/erabiltzaileak/pasahitza_ondo_aldatuta'},
+        {'template_name':'registration/password_reset_confirm.html'},
         name='cssocialprofile_password_reset_confirm'),
     url('^password_reset_complete',
         'django.contrib.auth.views.password_reset_complete',
@@ -32,8 +46,8 @@ urlpatterns += patterns('',
     url('^register','registration.views.register',{'success_url':'/erabiltzaileak/aktibatu','form_class':RegistrationFormUniqueEmail},name='cssocialprofile_register'),
     url('^activate/(?P<activation_key>\w+)$','registration.views.activate',name='cssocialprofile_activate'),
     url('^registration_complete$',direct_to_template,{'template':'registration/registration_complete.html'},name='cssocialprofile_registration_complete'),
-
-    )
+)
+"""
 
 
 urlpatterns += patterns('cssocialprofile.views',    

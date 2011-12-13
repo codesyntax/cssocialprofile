@@ -1,0 +1,8 @@
+{% load url from future %}
+Kaixo,
+
+{{ site.name }} webgunean izen ematea eskatu duzu. Horretarako ondorengo loturan klik egin behar duzu {{expiration_days}} egun pasa aurretik:
+
+http://{{site.domain}}{% url 'registration_activate' activation_key=activation_key %}
+
+{{site.name}} webguneko lantalde teknikoa

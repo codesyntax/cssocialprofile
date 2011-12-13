@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "registration/base.html" %}
 {% block content %}
 
 <h1>Login</h1>
@@ -7,7 +7,7 @@
 {% if user.is_authenticated %}
 <p>Saioa hasita daukazu dagoeneko</p>
 {% else %}
-<form method="post" action="{% url cssocialprofile_user_login %}">
+<form method="post" action="{% url auth_login %}">
 {% csrf_token %}
 {% if form.errors %}
 <p class="error">Zure erabiltzaile izena eta pasahitza ez daude ondo. Saiatu berriro!</p>
@@ -24,10 +24,12 @@
 </p>
 
 </form>
+
 <ul>
-<li><a href="{% url cssocialprofile_password_reset %}">Pasahitza ahaztu zait</a></li>
-<li><a href="{% url cssocialprofile_register %}">Erabiltzaile berria naiz eta izena eman nahi dut</a></li>
+<li><a href="{% url auth_password_reset %}">Pasahitza ahaztu zait</a></li>
+<li><a href="{% url registration_register %}">Erabiltzaile berria naiz eta izena eman nahi dut</a></li>
 </ul>
+
 
 
 {% endif %}
@@ -42,7 +44,8 @@
 <a rel="nofollow" href="{% url socialauth_begin "facebook" %}{% if next %}?next={{next}}{% endif %}"><img src="http://sanleandro.patch.com/images/facebook-login-button.png" alt="Facebook ikonoa" /></a>
 </p>
 <h3>Izena eman</h3>
-<form action="{% url cssocialprofile_register %}">
+
+<form action="{% url registration_register %}">
 <p>Erabiltzaile berria naiz eta izena eman nahi dut</p>
 <input type="submit" value="Izena eman" />
 </form>

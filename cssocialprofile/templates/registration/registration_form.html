@@ -1,0 +1,54 @@
+{% extends "registration/base.html" %}
+{% block content %}
+<h1>Izena eman</h1>
+{% if user.is_authenticated %}
+<h2>Saioa hasita daukazu dagoeneko</h2>
+{% else %}
+{% if  form.non_field_errors  %}
+<ul class="error">
+   {% for error in form.non_field_errors %}
+   <li>{{ error }}</li>
+   {% endfor %}
+</ul>
+{% endif %}
+
+<form action="{{request.path}}" method="POST">
+{% csrf_token %}
+{{form.username.errors }}
+<p>
+<label for="username">Erabiltzaile izena</label>
+
+{{form.username }}
+{{form.email.errors}}
+</p>
+<p>
+<label form="email">Email helbidea</label>
+   {{form.email}}
+{{form.password1.errors}}
+</p>
+<p>
+<label for="password1">Pasahitza</label>
+
+   {{form.password1}}
+</p>
+<p>
+<label for="password2">Pasahitza berretsi</label>
+
+   {{form.password2}}
+</p>
+<p>
+<input type="submit" value="Sortu">
+</p>
+</form>
+{% endif %}
+{% endblock %}
+{% block sidebar %}
+<h3>Izena eman Facebook edo Twitter bidez</h3>
+<p>
+<a rel="nofollow" href="{% url socialauth_begin "twitter" %}{% if next %}?next={{next}}{% endif %}"><img src="http://si0.twimg.com/images/dev/buttons/sign-in-with-twitter-d.png" alt="Twitter ikonoa" /></a> 
+<a rel="nofollow" href="{% url socialauth_begin "facebook" %}{% if next %}?next={{next}}{% endif %}"><img src="http://sanleandro.patch.com/images/facebook-login-button.png" alt="Facebook ikonoa" /></a>
+</p>
+
+{% endblock %}
+
+

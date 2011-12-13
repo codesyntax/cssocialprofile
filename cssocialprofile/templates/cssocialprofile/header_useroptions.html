@@ -1,10 +1,10 @@
 <div id="useroptions">
 {% if user.is_authenticated %}
-{% if user.userprofile.get_photo %}
-<img class="userlogged" width="30" height="30" src="{{user.userprofile.get_photo.get_profile_small_url}}" alt="Erabiltzailearen aurpegia" />
+{% if user.get_profile.get_photo %}
+<img class="userlogged" width="30" height="30" src="{{user.get_profile.get_photo.get_profile_url}}" alt="Erabiltzailearen aurpegia" />
 {% endif %}
-<a href="{% url cssocialprofile_user_index user.username  %}">{{ user.userprofile.get_fullname }} ({{user.username}})</a>
-<a href="{% url cssocialprofile_user_edit user.username %}">Profile</a>
+{{ user.get_profile.get_fullname }} ({{user.username}})
+{% comment %}<a href="{% url cssocialprofile_user_edit user.username %}">Profile</a>{% endcomment %}
 <a href="{% url cssocialprofile_logout %}?next={{request.path}}">Logout</a>
 
 {%else%}
