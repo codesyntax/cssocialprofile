@@ -131,6 +131,7 @@ def twitter_extra_values(sender, user, response, details, **kwargs):
         
     if profile.fullname!=u'':
         profile.fullname = response.get('user_name','')
+        
     if profile.bio!=u'':
         profile.bio = response.get('user_description','')         
     profile.twitter_id = response.get('screen_name','')
@@ -140,6 +141,7 @@ def twitter_extra_values(sender, user, response, details, **kwargs):
         profile.added_source = 2
     if not profile.photo:
         profile.photo = get_twitter_photo(response)
+        
     profile.save()
     return True
 pre_update.connect(twitter_extra_values, sender=TwitterBackend)

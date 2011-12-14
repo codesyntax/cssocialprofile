@@ -1,4 +1,4 @@
-{% extends "registration/base.html" %}
+{% extends "cssocialprofile/base.html" %}
 {% block cscontent %}
 
 <h1>Login</h1>
@@ -10,7 +10,7 @@
 <form method="post" action="{% url auth_login %}">
 {% csrf_token %}
 {% if form.errors %}
-<p class="error">Zure erabiltzaile izena eta pasahitza ez daude ondo. Saiatu berriro!</p>
+<ul class="errorlist"><li>Zure erabiltzaile izena eta pasahitza ez daude ondo. Saiatu berriro!</li></ul>
 {% endif %}
 
 
@@ -38,6 +38,8 @@
 
 
 {% block cssidebar %}
+{% if user.is_authenticated %}
+{% else %}
 <h3>Saioa hasi Facebook edo Twitter bidez</h3>
 <p>
 <a rel="nofollow" href="{% url socialauth_begin "twitter" %}{% if next %}?next={{next}}{% endif %}"><img src="http://si0.twimg.com/images/dev/buttons/sign-in-with-twitter-d.png" alt="Twitter ikonoa" /></a> 
@@ -49,5 +51,5 @@
 <p>Erabiltzaile berria naiz eta izena eman nahi dut</p>
 <input type="submit" value="Izena eman" />
 </form>
-
+{% endif %}
 {% endblock %}
