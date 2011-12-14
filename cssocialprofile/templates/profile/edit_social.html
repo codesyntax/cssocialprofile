@@ -1,0 +1,25 @@
+{% extends "profile/base.html" %}
+{% block perfil %}
+<div class="profileform">
+<h2>Sare sozialak</h2>
+
+<h3>Twitter</h3>
+<p>
+{% if profile.twitter_id %}
+Twitter lotuta dago: <a href="http://twitter.com/{{profile.twitter_id}}">{{profile.twitter_id}}</a>
+{% else %}
+Lotu twitter kontua erabiltzaile honi: <br /><a rel="nofollow" href="{% url socialauth_associate_begin "twitter" %}?next={{request.path}}"><img src="http://si0.twimg.com/images/dev/buttons/sign-in-with-twitter-d.png" alt="Twitter ikonoa" /></a>
+{% endif %}
+</p>
+<h3>Facebook</h3>
+<p>
+{% if profile.facebook_id %}
+Facebook lotuta dago: <a href="http://facebook.com/profile.php?id={{profile.facebook_id}}">{{profile.facebook_id}}</a>
+{% else %}
+Lotu facebook kontua erabiltzaile honi:<br /><a rel="nofollow" href="{% url socialauth_associate_begin "facebook" %}?next={{request.path}}"><img src="http://sanleandro.patch.com/images/facebook-login-button.png" alt="Facebook ikonoa" /></a>
+{% endif %}
+</p>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "profile/base.html" %}
+{% block perfil %}
+<div class="profileform">
+<h2>Argazkia</h2>
+{% if profile.photo %}
+<img class="userlogged" src="{{profile.photo.get_profile_url}}" alt="Erabiltzailearen aurpegia" />
+{% else %}
+<p class="message">Orain ez daukazu argazkirik!</p>
+{% endif %}
+<h2>Argazki berria</h2>
+<form method="post" action="" enctype="multipart/form-data">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="ALDATU ARGAZKIA" class="botoia" />
+</form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "profile/base.html" %}
+{% block perfil %}
+<div class="profileform">
+<h2>Datu pertsonalak</h2>
+<form action="{{request.path}}" method="POST">
+{% csrf_token %}
+{{userform.as_p}}
+{{profileform.as_p}}
+<input type="submit" class="botoia" value="Gorde">
+</form>
+</div>
+
+{% endblock %}
