@@ -128,20 +128,22 @@ def twitter_extra_values(sender, user, response, details, **kwargs):
     """ """
     model = get_profile_model()
     profile,new = model._default_manager.get_or_create(user=user) 
-        
-    if profile.fullname!=u'':
-        profile.fullname = response.get('user_name','')
-        
-    if profile.bio!=u'':
-        profile.bio = response.get('user_description','')         
+
+    if not profile.photo:
+        profile.photo = get_twitter_photo(response)
     profile.twitter_id = response.get('screen_name','')
+
     if profile.usertype == 0:
         profile.usertype = 1
     if profile.added_source == 0:
         profile.added_source = 2
-    if not profile.photo:
-        profile.photo = get_twitter_photo(response)
-        
+
+    if not profile.bio:
+        profile.bio = response.get('description','')         
+
+    if not profile.fullname:
+        profile.fullname = response.get('name','')    
+
     profile.save()
     return True
 pre_update.connect(twitter_extra_values, sender=TwitterBackend)
