@@ -3,7 +3,7 @@
 <div class="profileform">
 <h2>Argazkia</h2>
 {% if profile.photo %}
-<img class="userlogged" src="{{profile.photo.get_profile_url}}" alt="Erabiltzailearen aurpegia" />
+<img class="userlogged" src="{{profile.photo.get_profile_small_url}}" alt="Erabiltzailearen aurpegia" />
 {% else %}
 <p class="message">Orain ez daukazu argazkirik!</p>
 {% endif %}

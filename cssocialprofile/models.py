@@ -20,8 +20,8 @@ def get_profile_model():
    
 class CSAbstractSocialProfile(models.Model):
     user = models.OneToOneField(User,unique=True)
-    fullname = models.CharField(max_length=200, blank=True,null=True)
-    bio = models.TextField(null=True,blank=True)
+    fullname = models.CharField('Izen osoa', max_length=200, blank=True,null=True)
+    bio = models.TextField('Biografia/deskribapena',null=True,blank=True)
     usertype =  models.PositiveSmallIntegerField(choices = USERTYPE_CHOICES, default = 0)
     
     added_source = models.PositiveSmallIntegerField(choices = SOURCE_CHOICES, default = 0)
@@ -35,6 +35,14 @@ class CSAbstractSocialProfile(models.Model):
 
     added = models.DateTimeField(auto_now_add=True,editable=False)
     modified =models.DateTimeField(auto_now=True,editable=False)
+
+    def is_jounalist(self):
+        """ """
+        return self.usertype==3
+
+    def is_member(self):
+        """ """
+        return self.usertype==1
 
 
     def get_photo(self):
@@ -106,7 +114,7 @@ def get_twitter_photo(response):
 
 def facebook_extra_values(sender, user, response, details, **kwargs):
     """ """
-    profile = user.userprofile
+    profile = user.get_profile()
     profile.facebook_id = response.get('id')
     if profile.added_source == 0:
         #Esan nahi du lehen aldiz sartzen dela...
@@ -150,7 +158,7 @@ pre_update.connect(twitter_extra_values, sender=TwitterBackend)
 
 def openid_extra_values(sender, user, response, details, **kwargs):
     """ """
-    profile = user.userprofile
+    profile = user.get_profile()
 
     if response.status == 'success':
         profile.openid_id = response.getDisplayIdentifier()
