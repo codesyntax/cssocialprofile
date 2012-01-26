@@ -40,12 +40,12 @@
 {% block cssidebar %}
 {% if user.is_authenticated %}
 {% else %}
-<h2>Saioa hasi Facebook edo Twitter bidez</h2>
+<h2>Facebook edo Twitter bidez</h2>
 <p>
 <a rel="nofollow" href="{% url socialauth_begin "twitter" %}{% if next %}?next={{next}}{% endif %}"><img src="http://si0.twimg.com/images/dev/buttons/sign-in-with-twitter-d.png" alt="Twitter ikonoa" /></a> 
 <a rel="nofollow" href="{% url socialauth_begin "facebook" %}{% if next %}?next={{next}}{% endif %}"><img src="http://sanleandro.patch.com/images/facebook-login-button.png" alt="Facebook ikonoa" /></a>
 </p>
-<h3>Izena eman</h3>
+<h2>Izena eman</h2>
 
 <form action="{% url registration_register %}">
 <p>Erabiltzaile berria naiz eta izena eman nahi dut</p>
