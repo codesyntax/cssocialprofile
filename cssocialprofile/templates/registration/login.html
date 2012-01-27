@@ -19,7 +19,7 @@
 <p><label for="password">Pasahitza</label>
 {{ form.password }}</p>
 <p>
-<input type="submit" value=" Sartu " />
+<input type="submit" value=" Sartu " class="submit" />
 <input type="hidden" name="next" value="{{ next }}" />
 </p>
 
@@ -45,11 +45,12 @@
 <a rel="nofollow" href="{% url socialauth_begin "twitter" %}{% if next %}?next={{next}}{% endif %}"><img src="http://si0.twimg.com/images/dev/buttons/sign-in-with-twitter-d.png" alt="Twitter ikonoa" /></a> 
 <a rel="nofollow" href="{% url socialauth_begin "facebook" %}{% if next %}?next={{next}}{% endif %}"><img src="http://sanleandro.patch.com/images/facebook-login-button.png" alt="Facebook ikonoa" /></a>
 </p>
+<p>Zure Facebook edo Twitter kontuak erabili ditzakezu uztarria.com-en saioa hasteko eta edukia gehitzeko, berriro zure datuak ematen ibili beharrik gabe.</p>
 <h2>Izena eman</h2>
 
 <form action="{% url registration_register %}">
 <p>Erabiltzaile berria naiz eta izena eman nahi dut</p>
-<input type="submit" value="Izena eman" />
+<input type="submit" value="Izena eman" class="submit" />
 </form>
 {% endif %}
 {% endblock %}

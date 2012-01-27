@@ -37,7 +37,7 @@
    {{form.password2}}
 </p>
 <p>
-<input type="submit" value="Sortu">
+<input type="submit" value="Sortu" class="submit" />
 </p>
 </form>
 {% endif %}
@@ -45,7 +45,7 @@
 {% block cssidebar %}
 {% if user.is_authenticated %}
 {% else %}
-<h3>Izena eman Facebook edo Twitter bidez</h3>
+<h2>Izena eman Facebook edo Twitter bidez</h2>
 <p>
 <a rel="nofollow" href="{% url socialauth_begin "twitter" %}{% if next %}?next={{next}}{% endif %}"><img src="http://si0.twimg.com/images/dev/buttons/sign-in-with-twitter-d.png" alt="Twitter ikonoa" /></a> 
 <a rel="nofollow" href="{% url socialauth_begin "facebook" %}{% if next %}?next={{next}}{% endif %}"><img src="http://sanleandro.patch.com/images/facebook-login-button.png" alt="Facebook ikonoa" /></a>
