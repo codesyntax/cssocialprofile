@@ -1,8 +1,10 @@
 {% extends "cssocialprofile/base.html" %}
+{% load i18n %}
+
 {% block cscontent %}
-<h1>Izena eman</h1>
+<h1>{% trans "Register" %}</h1>
 {% if user.is_authenticated %}
-<h2>Saioa hasita daukazu dagoeneko</h2>
+<h2>{% trans "You are already logged in" %}</h2>
 {% else %}
 {% if  form.non_field_errors  %}
 <ul class="error">
@@ -16,28 +18,28 @@
 {% csrf_token %}
 {{form.username.errors }}
 <p>
-<label for="username">Erabiltzaile izena</label>
+<label for="username">{% trans "Username" %}</label>
 
 {{form.username }}
 {{form.email.errors}}
 </p>
 <p>
-<label form="email">Email helbidea</label>
+<label form="email">{% trans "Email" %}</label>
    {{form.email}}
 {{form.password1.errors}}
 </p>
 <p>
-<label for="password1">Pasahitza</label>
+<label for="password1">{% trans "Password" %}</label>
 
    {{form.password1}}
 </p>
 <p>
-<label for="password2">Pasahitza berretsi</label>
+<label for="password2">{% trans "Confirm password" %}</label>
 
    {{form.password2}}
 </p>
 <p>
-<input type="submit" value="Sortu" class="submit" />
+<input type="submit" value="{% trans "Create account" %}" class="submit" />
 </p>
 </form>
 {% endif %}
@@ -45,10 +47,10 @@
 {% block cssidebar %}
 {% if user.is_authenticated %}
 {% else %}
-<h2>Izena eman Facebook edo Twitter bidez</h2>
+<h2>{% trans "Register using Facebook or Twitter" %}</h2>
 <p>
-<a rel="nofollow" href="{% url socialauth_begin "twitter" %}{% if next %}?next={{next}}{% endif %}"><img src="http://si0.twimg.com/images/dev/buttons/sign-in-with-twitter-d.png" alt="Twitter ikonoa" /></a> 
-<a rel="nofollow" href="{% url socialauth_begin "facebook" %}{% if next %}?next={{next}}{% endif %}"><img src="http://sanleandro.patch.com/images/facebook-login-button.png" alt="Facebook ikonoa" /></a>
+<a rel="nofollow" href="{% url socialauth_begin "twitter" %}{% if next %}?next={{next}}{% endif %}"><img src="http://si0.twimg.com/images/dev/buttons/sign-in-with-twitter-d.png" alt="Twitter logo" /></a> 
+<a rel="nofollow" href="{% url socialauth_begin "facebook" %}{% if next %}?next={{next}}{% endif %}"><img src="http://sanleandro.patch.com/images/facebook-login-button.png" alt="Facebook logo" /></a>
 </p>
 {% endif %}
 {% endblock %}

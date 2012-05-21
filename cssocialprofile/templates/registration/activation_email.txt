@@ -1,8 +1,13 @@
 {% load url from future %}
-Kaixo,
+{% load i18n %}
 
-{{ site.name }} webgunean izen ematea eskatu duzu. Horretarako ondorengo loturan klik egin behar duzu {{expiration_days}} egun pasa aurretik:
+{% trans "Hello" %}
+
+{% blocktrans with sitename=site.name %}You have requested joining {{ sitename }}.{% endblocktrans %}
+
+{% blocktrans with expirationdays=expiration_days %}Please click in this activation link before {{ expirationdays }} days:{% endblocktrans %}
 
 http://{{site.domain}}{% url 'registration_activate' activation_key=activation_key %}
 
-{{site.name}} webguneko lantalde teknikoa
+{% blocktrans with site_name=site_name %}The team at {{ site_name }}.{% endblocktrans %}
+

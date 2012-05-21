@@ -1,36 +1,21 @@
-{% extends "cssocialprofile/base.html" %}
+{% extends "registration/base.html" %}
+{% load i18n %}
 {% block cscontent %}
-
-<h1>Login</h1>
-
-
 {% if user.is_authenticated %}
-<p>Saioa hasita daukazu dagoeneko</p>
 {% else %}
-<form method="post" action="{% url auth_login %}">
-{% csrf_token %}
-{% if form.errors %}
-<ul class="errorlist"><li>Zure erabiltzaile izena eta pasahitza ez daude ondo. Saiatu berriro!</li></ul>
-{% endif %}
+<h2>{% trans "Sign in" %}</h2>
 
-
-<p><label for="username">Erabiltzaile izena</label>
-{{ form.username }}</p>
-<p><label for="password">Pasahitza</label>
-{{ form.password }}</p>
-<p>
-<input type="submit" value=" Sartu " class="submit" />
-<input type="hidden" name="next" value="{{ next }}" />
-</p>
-
+<form action="{% url registration_register %}">
+<p>{% trans "I'm new here. Create account" %}</p>
+<input type="submit" value="{% trans "Create account" %}" class="submit" />
 </form>
 
-<ul>
-<li><a href="{% url auth_password_reset %}">Pasahitza ahaztu zait</a></li>
-<li><a href="{% url registration_register %}">Erabiltzaile berria naiz eta izena eman nahi dut</a></li>
-</ul>
-
-
+<h2>{% trans "Sign in using Facebook or Twitter" %}</h2>
+<p>
+<a rel="nofollow" href="{% url socialauth_begin "twitter" %}{% if next %}?next={{next}}{% endif %}"><img src="http://si0.twimg.com/images/dev/buttons/sign-in-with-twitter-d.png" alt="Twitter icon" /></a> 
+<a rel="nofollow" href="{% url socialauth_begin "facebook" %}{% if next %}?next={{next}}{% endif %}"><img src="http://sanleandro.patch.com/images/facebook-login-button.png" alt="Facebook icon" /></a>
+</p>
+<p>{% trans "You can use your Facebook or Twitter accounts to log in" %}</p>
 
 {% endif %}
 
@@ -38,19 +23,33 @@
 
 
 {% block cssidebar %}
-{% if user.is_authenticated %}
-{% else %}
-<h2>Facebook edo Twitter bidez</h2>
-<p>
-<a rel="nofollow" href="{% url socialauth_begin "twitter" %}{% if next %}?next={{next}}{% endif %}"><img src="http://si0.twimg.com/images/dev/buttons/sign-in-with-twitter-d.png" alt="Twitter ikonoa" /></a> 
-<a rel="nofollow" href="{% url socialauth_begin "facebook" %}{% if next %}?next={{next}}{% endif %}"><img src="http://sanleandro.patch.com/images/facebook-login-button.png" alt="Facebook ikonoa" /></a>
-</p>
-<p>Zure Facebook edo Twitter kontuak erabili ditzakezu uztarria.com-en saioa hasteko eta edukia gehitzeko, berriro zure datuak ematen ibili beharrik gabe.</p>
-<h2>Izena eman</h2>
+<h2>{% trans "Log in" %}</h2>
 
-<form action="{% url registration_register %}">
-<p>Erabiltzaile berria naiz eta izena eman nahi dut</p>
-<input type="submit" value="Izena eman" class="submit" />
-</form>
+{% if user.is_authenticated %}
+<p>{% trans "You are already logged in" %}</p>
+{% else %}
+
+<form method="post" action="{% url auth_login %}">
+{% csrf_token %}
+{% if form.errors %}
+<ul class="errorlist"><li>{% trans "Your username and password do not match. Please try again." %}</li></ul>
 {% endif %}
+
+<p><label for="username">{% trans "Username" %}</label>
+{{ form.username }}</p>
+<p><label for="password">{% trans "Password" %}</label>
+{{ form.password }}</p>
+<p>
+<input type="submit" value="{% trans "Sign in"%}" class="submit" />
+<input type="hidden" name="next" value="{{ next }}" />
+</p>
+
+</form>
+
+<ul>
+<li><a href="{% url auth_password_reset %}">{% trans "I have forgotten my password" %}</a></li>
+<li><a href="{% url registration_register %}">{% trans "I'm new here. Create account" %}</a></li>
+</ul>
+{% endif %}
+
 {% endblock %}

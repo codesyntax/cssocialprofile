@@ -12,6 +12,7 @@ from django.contrib import messages
 from photologue.models import Photo
 from cssocialprofile.forms import ProfileForm, ProfilePhotoForm
 from cssocialprofile.utils.slug import time_slug_string
+from django.utils.translation import ugettext as _
 
 def index(request):
     """ """
@@ -31,7 +32,7 @@ def edit_profile(request):
          profileform = ProfileForm(posta, instance=profile)
          if profileform.is_valid():
             profileform.save()
-            messages.add_message(request, messages.SUCCESS, 'Datuak ondo aldatu dira.', fail_silently=True)    
+            messages.add_message(request, messages.SUCCESS, _('New user data saved.'), fail_silently=True)    
             return HttpResponseRedirect(reverse('cssocialprofile_edit_profile'))
     else:
         profileform = ProfileForm(instance=profile)
@@ -58,7 +59,7 @@ def edit_profile_photo(request):
     if request.method == 'POST':
         form = ProfilePhotoForm(request.POST, request.FILES)
         if form.is_valid():
-            photo = handle_uploaded_file(request.FILES['argazkia'], profile.get_fullname())
+            photo = handle_uploaded_file(request.FILES['avatarpic'], profile.get_fullname())
             profile.photo = photo
             profile.save()
                     
