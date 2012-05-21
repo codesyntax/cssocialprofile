@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-21 16:22+0200\n"
+"POT-Creation-Date: 2012-05-21 16:51+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,16 +32,16 @@ msgid ""
 "The name of the picture (%s) has an unsupported character. Please rename it "
 "before uploading."
 msgstr ""
-"Kargatu duzun fitxategiaren izenak (%s) karaktere bereziren bat du. Mesedez"
-"berrizendatu berriz kargatu aurretik."
+"Kargatu duzun fitxategiaren izenak (%s) karaktere bereziren bat du. "
+"Mesedezberrizendatu berriz kargatu aurretik."
 
 #: forms.py:27
 msgid ""
 "The picture is not in one of our supported formats. We don't support BMP "
 "files. Please change it"
 msgstr ""
-"Kargatu duzun irudia ez dago guk onartzen dugun formatuetako batean. Ezin dugu"
-"BMP fitxategirik prozesatu. Aldatu mesedez."
+"Kargatu duzun irudia ez dago guk onartzen dugun formatuetako batean. Ezin "
+"duguBMP fitxategirik prozesatu. Aldatu mesedez."
 
 #: models.py:24
 msgid "Full name"
@@ -155,6 +155,23 @@ msgstr ""
 "Arazo bat izan dugu zure kontua aktibatzean. Balitek lotura zaharkituta "
 "izatea. Mesedez, saiatu berriro"
 
+#: templates/registration/activation_complete.html:6
+msgid "Your account has been successfully activated"
+msgstr "Zure kontua aktibatua izan da"
+
+#: templates/registration/activation_complete.html:8
+msgid ""
+"Your account is activated. Now you can login with the username and password "
+"you provided"
+msgstr ""
+"Zure erabiltzaile kontua egoki sortu da. Orain erabiltzaile eta pasahitza "
+"erabili ditzazkezu"
+
+#: templates/registration/activation_complete.html:10
+#: templates/registration/login.html:26
+msgid "Log in"
+msgstr "Sartu"
+
 #: templates/registration/activation_email.txt:4
 msgid "Hello"
 msgstr "Kaixo"
@@ -201,10 +218,6 @@ msgstr "Twitter edo Facebook bidez sartu"
 #: templates/registration/login.html:18
 msgid "You can use your Facebook or Twitter accounts to log in"
 msgstr "Facebook edo Twitter-en bidez sar zaitezke."
-
-#: templates/registration/login.html:26
-msgid "Log in"
-msgstr "Sartu"
 
 #: templates/registration/login.html:29
 #: templates/registration/registration_form.html:7
@@ -607,13 +620,3 @@ msgstr "Facebook edo Twitter erabiliz sartu"
 
 #~ msgid "Sign out"
 #~ msgstr "Irten"
-
-#~ msgid "Your account has been successfully activated"
-#~ msgstr "Zure kontua aktibatua izan da"
-
-#~ msgid ""
-#~ "Your account is activated. Now you can login with the username and "
-#~ "password you provided"
-#~ msgstr ""
-#~ "Zure erabiltzaile kontua egoki sortu da. Orain erabiltzaile eta pasahitza "
-#~ "erabili ditzazkezu"
