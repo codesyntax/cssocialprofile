@@ -117,6 +117,10 @@ def facebook_extra_values(sender, user, response, details, **kwargs):
     """ """
     profile = user.get_profile()
     profile.facebook_id = response.get('id')
+
+    if profile.usertype == 0:
+        profile.usertype = 1
+    
     if profile.added_source == 0:
         #First time logging in
         profile.added_source = 3
