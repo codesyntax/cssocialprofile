@@ -9,5 +9,5 @@
 
 http://{{site.domain}}{% url 'registration_activate' activation_key=activation_key %}
 
-{% blocktrans with site_name=site_name %}The team at {{ site_name }}.{% endblocktrans %}
+{% blocktrans with sitename=site.name %}The team at {{ sitename }}.{% endblocktrans %}
 
