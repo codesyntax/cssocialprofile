@@ -6,8 +6,7 @@ version = '0.8'
 setup(name='cssocialprofile',
       version=version,
       description="SocialProfile app extension",
-      long_description="""\
-""",
+      long_description=open("README.rst").read(),
       classifiers=[], # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
       keywords='',
       author='Josu Azpillaga',
