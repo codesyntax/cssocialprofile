@@ -1,12 +1,11 @@
 from django.conf.urls.defaults import patterns, include, url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.views.generic.simple import direct_to_template
+from django.views.generic import TemplateView
 
 from registration.forms import RegistrationFormUniqueEmail
 from django.contrib.auth.views import password_reset
 
 from django.core.urlresolvers import reverse
-from django.views.generic.simple import redirect_to
 
 #default view for our index
 urlpatterns = patterns('cssocialprofile.views',
@@ -18,8 +17,8 @@ urlpatterns += patterns('',
     url(r'^logout$','django.contrib.auth.views.logout', name='cssocialprofile_logout'),
     url(r'^login$','django.contrib.auth.views.login', name='cssocialprofile_user_login'),
 
-    url(r'^accounts/password/$',redirect_to, {'url': '/'}),
-    url(r'^accounts/$',redirect_to, {'url': '/'}),
+    url(r'^accounts/password/$',TemplateView.as_view(template_name='/')),
+    url(r'^accounts/$',TemplateView.as_view(template_name='/')),
         
     (r'^accounts/', include('registration.urls')),
     (r'^social/', include('social_auth.urls')),
