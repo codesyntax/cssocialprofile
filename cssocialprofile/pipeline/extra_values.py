@@ -22,7 +22,7 @@ def get_twitter_photo(response):
 
 
 
-def facebook_extra_values(user, response, details, **kwargs):
+def facebook_extra_values(backend, backend, details, response, uid, username, user=None, *args, **kwargs):
     """ """
     profile = user.get_profile()
     profile.facebook_id = response.get('id')
@@ -44,7 +44,7 @@ def facebook_extra_values(user, response, details, **kwargs):
     return True
 
 
-def twitter_extra_values(user, response, details, **kwargs):
+def twitter_extra_values(backend, backend, details, response, uid, username, user=None, *args, **kwargs):
     """ """
     model = get_profile_model()
     profile,new = model._default_manager.get_or_create(user=user) 
@@ -67,7 +67,7 @@ def twitter_extra_values(user, response, details, **kwargs):
     profile.save()
     return True
 
-def openid_extra_values(user, response, details, **kwargs):
+def openid_extra_values(backend, backend, details, response, uid, username, user=None, *args, **kwargs):
     """ """
     profile = user.get_profile()
 
