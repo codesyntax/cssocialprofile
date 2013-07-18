@@ -1,3 +1,5 @@
+from cssocialprofile.models import get_profile_model
+
 from social_auth.backends.facebook import FacebookBackend
 from social_auth.backends.twitter import TwitterBackend
 from social_auth.backends import OpenIDBackend
