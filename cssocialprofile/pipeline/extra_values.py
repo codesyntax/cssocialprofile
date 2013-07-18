@@ -48,8 +48,6 @@ def facebook_extra_values(backend, details, response, uid, username, user=None, 
         #username in facebook users...
         user.username = slugify(user.username)
         user.save()
-    
-    return True
 
 
 def twitter_extra_values(backend, details, response, uid, username, user=None, *args, **kwargs):
@@ -74,7 +72,6 @@ def twitter_extra_values(backend, details, response, uid, username, user=None, *
             profile.fullname = response.get('name','')    
 
         profile.save()
-    return True
 
 def openid_extra_values(backend, details, response, uid, username, user=None, *args, **kwargs):
     """ """
@@ -87,4 +84,3 @@ def openid_extra_values(backend, details, response, uid, username, user=None, *a
                 profile.mota = 1
                 profile.added_source = 4
         profile.save()
-    return True
