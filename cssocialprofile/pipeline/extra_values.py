@@ -1,3 +1,7 @@
+from social_auth.backends.facebook import FacebookBackend
+from social_auth.backends.twitter import TwitterBackend
+from social_auth.backends import OpenIDBackend
+
 def get_facebook_photo(response):
     """ """
     import facebook.djangofb as facebook
@@ -22,59 +26,62 @@ def get_twitter_photo(response):
 
 
 
-def facebook_extra_values(backend, backend, details, response, uid, username, user=None, *args, **kwargs):
+def facebook_extra_values(backend, details, response, uid, username, user=None, *args, **kwargs):
     """ """
-    profile = user.get_profile()
-    profile.facebook_id = response.get('id')
+    if backend.__class__ == FacebookBackend:
+        profile = user.get_profile()
+        profile.facebook_id = response.get('id')
 
-    if profile.usertype == 0:
-        profile.usertype = 1
-    
-    if profile.added_source == 0:
-        #First time logging in
-        profile.added_source = 3
-        profile.mota = 1
-    if not profile.photo:
-        profile.photo = get_facebook_photo(response)
-    profile.save()
-    #username in facebook users...
-    user.username = slugify(user.username)
-    user.save()
-    
-    return True
-
-
-def twitter_extra_values(backend, backend, details, response, uid, username, user=None, *args, **kwargs):
-    """ """
-    model = get_profile_model()
-    profile,new = model._default_manager.get_or_create(user=user) 
-
-    if not profile.photo:
-        profile.photo = get_twitter_photo(response)
-    profile.twitter_id = response.get('screen_name','')
-
-    if profile.usertype == 0:
-        profile.usertype = 1
-    if profile.added_source == 0:
-        profile.added_source = 2
-
-    if not profile.bio:
-        profile.bio = response.get('description','')         
-
-    if not profile.fullname:
-        profile.fullname = response.get('name','')    
-
-    profile.save()
-    return True
-
-def openid_extra_values(backend, backend, details, response, uid, username, user=None, *args, **kwargs):
-    """ """
-    profile = user.get_profile()
-
-    if response.status == 'success':
-        profile.openid_id = response.getDisplayIdentifier()
+        if profile.usertype == 0:
+            profile.usertype = 1
+        
         if profile.added_source == 0:
+            #First time logging in
+            profile.added_source = 3
             profile.mota = 1
-            profile.added_source = 4
-    profile.save()
+        if not profile.photo:
+            profile.photo = get_facebook_photo(response)
+        profile.save()
+        #username in facebook users...
+        user.username = slugify(user.username)
+        user.save()
+    
+    return True
+
+
+def twitter_extra_values(backend, details, response, uid, username, user=None, *args, **kwargs):
+    """ """
+    if backend.__class__ == TwitterBackend:
+        model = get_profile_model()
+        profile,new = model._default_manager.get_or_create(user=user) 
+
+        if not profile.photo:
+            profile.photo = get_twitter_photo(response)
+        profile.twitter_id = response.get('screen_name','')
+
+        if profile.usertype == 0:
+            profile.usertype = 1
+        if profile.added_source == 0:
+            profile.added_source = 2
+
+        if not profile.bio:
+            profile.bio = response.get('description','')         
+
+        if not profile.fullname:
+            profile.fullname = response.get('name','')    
+
+        profile.save()
+    return True
+
+def openid_extra_values(backend, details, response, uid, username, user=None, *args, **kwargs):
+    """ """
+    if backend.__class__ == OpenIDBackend:
+        profile = user.get_profile()
+
+        if response.status == 'success':
+            profile.openid_id = response.getDisplayIdentifier()
+            if profile.added_source == 0:
+                profile.mota = 1
+                profile.added_source = 4
+        profile.save()
     return True
