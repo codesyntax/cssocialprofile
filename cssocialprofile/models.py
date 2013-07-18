@@ -6,6 +6,11 @@ from django.conf import settings
 from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext as _
 
+from social_auth.signals import pre_update
+from social_auth.backends.facebook import FacebookBackend
+from social_auth.backends.twitter import TwitterBackend
+from social_auth.backends import OpenIDBackend
+
 USERTYPE_CHOICES = getattr(settings,'USERTYPE_CHOICES', ((0,'Erabiltzailea'),(1,'Kidea'),(2,'Nor publikoa'),(3,'Kazetaria'),(4,'Administratzailea')))
 AUTH_PROFILE_MODULE = getattr(settings,'AUTH_PROFILE_MODULE', 'cssocialprofile.CSSocialProfile')
 SOURCE_CHOICES = ((0,'-'),(1,'Register'),(2,'Twitter'),(3,'Facebook'),(4,'OpenId'),)
@@ -82,11 +87,6 @@ def create_profile(sender, instance, created,**kwargs):
         profile,new = model._default_manager.get_or_create(user=instance) 
 from django.db.models.signals import post_save
 post_save.connect(create_profile, sender=User)
-
-from social_auth.signals import pre_update
-from social_auth.backends.facebook import FacebookBackend
-from social_auth.backends.twitter import TwitterBackend
-from social_auth.backends import OpenIDBackend
 
 
 def get_facebook_photo(response):
