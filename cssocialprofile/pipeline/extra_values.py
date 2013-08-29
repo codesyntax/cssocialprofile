@@ -42,7 +42,6 @@ def facebook_extra_values(backend, details, response, uid, username, user=None, 
         if profile.added_source == 0:
             #First time logging in
             profile.added_source = 3
-            profile.mota = 1
             
         if not profile.photo:
             profile.photo = get_facebook_photo(response)
