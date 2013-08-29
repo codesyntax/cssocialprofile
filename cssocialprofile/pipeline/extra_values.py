@@ -32,7 +32,8 @@ def get_twitter_photo(response):
 def facebook_extra_values(backend, details, response, uid, username, user=None, *args, **kwargs):
     """ """
     if backend.__class__ == FacebookBackend:
-        profile = user.get_profile()
+        model = get_profile_model()
+        profile,new = model._default_manager.get_or_create(user=user) 
         profile.facebook_id = response.get('id')
 
         if profile.usertype == 0:
@@ -42,12 +43,11 @@ def facebook_extra_values(backend, details, response, uid, username, user=None, 
             #First time logging in
             profile.added_source = 3
             profile.mota = 1
+            
         if not profile.photo:
             profile.photo = get_facebook_photo(response)
+            
         profile.save()
-        #username in facebook users...
-        user.username = slugify(user.username)
-        user.save()
 
 
 def twitter_extra_values(backend, details, response, uid, username, user=None, *args, **kwargs):
