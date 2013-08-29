@@ -42,6 +42,10 @@ def facebook_extra_values(backend, details, response, uid, username, user=None, 
         if profile.added_source == 0:
             #First time logging in
             profile.added_source = 3
+
+        if not profile.fullname:
+            user_data = facebook.users.getInfo(profile.facebook_id, ['first_name', 'last_name',])[0]
+            profile.fullname = user_data['first_name'] + u' ' + user_data['last_name']
             
         if not profile.photo:
             profile.photo = get_facebook_photo(response)
