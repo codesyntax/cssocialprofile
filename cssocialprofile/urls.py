@@ -1,11 +1,6 @@
 from django.conf.urls.defaults import patterns, include, url
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic import TemplateView
 
-from registration.forms import RegistrationFormUniqueEmail
-from django.contrib.auth.views import password_reset
-
-from django.core.urlresolvers import reverse
 
 #default view for our index
 urlpatterns = patterns('cssocialprofile.views',
@@ -32,10 +27,3 @@ urlpatterns += patterns('cssocialprofile.views',
 )
 
 
-"""
-    url(r'^sarea','uztarria.profile.views.profile_edit_social', {'tab':'social'},name='erabiltzailea_perfila_edit_social'),
-    url(r'^argazkia','uztarria.profile.views.profile_edit_photo', {'tab':'photo'}, name='erabiltzailea_perfila_edit_photo'),
-    url(r'^pasahitza','uztarria.profile.views.profile_edit', {'tab':'password'}, name='erabiltzailea_perfila_edit_password'),
-    url(r'^mota','uztarria.profile.views.profile_edit_type', {'tab':'type'}, name='erabiltzailea_perfila_edit_type'),    
-    url(r'^','uztarria.profile.views.profile_edit', {'tab':'personal'}, name='erabiltzailea_perfila_edit'),
-"""  
