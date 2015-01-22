@@ -2,9 +2,6 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from django.shortcuts import get_list_or_404
-
-from django.contrib.contenttypes.models import ContentType
 
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
