@@ -1,9 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from photologue.models import Photo
-from cssocialprofile.utils.load_images import loadUrlImage
 from django.conf import settings
-from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext as _
 
 USERTYPE_CHOICES = getattr(settings,'USERTYPE_CHOICES', ((0,'Erabiltzailea'),(1,'Kidea'),(2,'Nor publikoa'),(3,'Kazetaria'),(4,'Administratzailea')))
