@@ -23,7 +23,7 @@ def edit_profile(request):
     """ """
     tab = 'personal'
     user= request.user
-    profile = user.get_profile()
+    profile = user.profile
     if request.method == 'POST':
          posta=request.POST.copy()     
          profileform = ProfileForm(posta, instance=profile)
@@ -52,7 +52,7 @@ def edit_profile_photo(request):
     """ """
     tab = 'photo'
     user = request.user    
-    profile = user.get_profile()
+    profile = user.profile
     if request.method == 'POST':
         form = ProfilePhotoForm(request.POST, request.FILES)
         if form.is_valid():
@@ -70,7 +70,7 @@ def edit_profile_social(request):
     """ """
     tab = 'social'
     user = request.user    
-    profile = user.get_profile()
+    profile = user.profile
     return render_to_response('profile/edit_social.html', locals(), context_instance=RequestContext(request))
         
 
