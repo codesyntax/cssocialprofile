@@ -4,6 +4,7 @@ from photologue.models import Photo
 from django.conf import settings
 from django.utils.translation import ugettext as _
 
+#AUTH_PROFILE_MODULE is deprecated in Django 1.6
 USERTYPE_CHOICES = getattr(settings,'USERTYPE_CHOICES', ((0,'Erabiltzailea'),(1,'Kidea'),(2,'Nor publikoa'),(3,'Kazetaria'),(4,'Administratzailea')))
 AUTH_PROFILE_MODULE = getattr(settings,'AUTH_PROFILE_MODULE', 'cssocialprofile.CSSocialProfile')
 SOURCE_CHOICES = ((0,'-'),(1,'Register'),(2,'Twitter'),(3,'Facebook'),(4,'OpenId'),)
