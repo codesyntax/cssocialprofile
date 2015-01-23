@@ -11,6 +11,8 @@ from cssocialprofile.forms import ProfileForm, ProfilePhotoForm
 from cssocialprofile.utils.slug import time_slug_string
 from django.utils.translation import ugettext as _
 
+from .models import get_profile_model
+
 def index(request):
     """ """
     h = {}
@@ -23,7 +25,8 @@ def edit_profile(request):
     """ """
     tab = 'personal'
     user= request.user
-    profile = user.profile
+    profile_model = get_profile_model()
+    profile = getattr(user,profile_model.__name__.lower())
     if request.method == 'POST':
          posta=request.POST.copy()     
          profileform = ProfileForm(posta, instance=profile)
@@ -51,8 +54,9 @@ def handle_uploaded_file(f,title):
 def edit_profile_photo(request):
     """ """
     tab = 'photo'
-    user = request.user    
-    profile = user.profile
+    user = request.user
+    profile_model = get_profile_model()
+    profile = getattr(user,profile_model.__name__.lower())
     if request.method == 'POST':
         form = ProfilePhotoForm(request.POST, request.FILES)
         if form.is_valid():
@@ -69,8 +73,9 @@ def edit_profile_photo(request):
 def edit_profile_social(request):
     """ """
     tab = 'social'
-    user = request.user    
-    profile = user.profile
+    user = request.user
+    profile_model = get_profile_model()
+    profile = getattr(user,profile_model.__name__.lower())
     return render_to_response('profile/edit_social.html', locals(), context_instance=RequestContext(request))
         
 
