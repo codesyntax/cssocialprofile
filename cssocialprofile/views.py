@@ -2,9 +2,6 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from django.shortcuts import get_list_or_404
-
-from django.contrib.contenttypes.models import ContentType
 
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -13,6 +10,8 @@ from photologue.models import Photo
 from cssocialprofile.forms import ProfileForm, ProfilePhotoForm
 from cssocialprofile.utils.slug import time_slug_string
 from django.utils.translation import ugettext as _
+
+from .models import get_profile_model
 
 def index(request):
     """ """
@@ -26,7 +25,8 @@ def edit_profile(request):
     """ """
     tab = 'personal'
     user= request.user
-    profile = user.get_profile()
+    profile_model = get_profile_model()
+    profile = getattr(user,profile_model.__name__.lower())
     if request.method == 'POST':
          posta=request.POST.copy()     
          profileform = ProfileForm(posta, instance=profile)
@@ -54,8 +54,9 @@ def handle_uploaded_file(f,title):
 def edit_profile_photo(request):
     """ """
     tab = 'photo'
-    user = request.user    
-    profile = user.get_profile()
+    user = request.user
+    profile_model = get_profile_model()
+    profile = getattr(user,profile_model.__name__.lower())
     if request.method == 'POST':
         form = ProfilePhotoForm(request.POST, request.FILES)
         if form.is_valid():
@@ -72,8 +73,9 @@ def edit_profile_photo(request):
 def edit_profile_social(request):
     """ """
     tab = 'social'
-    user = request.user    
-    profile = user.get_profile()
+    user = request.user
+    profile_model = get_profile_model()
+    profile = getattr(user,profile_model.__name__.lower())
     return render_to_response('profile/edit_social.html', locals(), context_instance=RequestContext(request))
         
 
