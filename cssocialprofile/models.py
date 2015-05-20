@@ -1,12 +1,11 @@
 from django.db import models
-from django.contrib.auth.models import User
 from photologue.models import Photo
 from django.conf import settings
 from django.utils.translation import ugettext as _
 
 #AUTH_PROFILE_MODULE is deprecated in Django 1.6
 USERTYPE_CHOICES = getattr(settings,'USERTYPE_CHOICES', ((0,'Erabiltzailea'),(1,'Kidea'),(2,'Nor publikoa'),(3,'Kazetaria'),(4,'Administratzailea')))
-AUTH_PROFILE_MODULE = getattr(settings,'AUTH_PROFILE_MODULE', 'cssocialprofile.CSSocialProfile')
+AUTH_USER_MODEL = getattr(settings,'AUTH_USER_MODEL', 'cssocialprofile.CSSocialProfile')
 SOURCE_CHOICES = ((0,'-'),(1,'Register'),(2,'Twitter'),(3,'Facebook'),(4,'OpenId'),)
 DEFAULT_PROFILE_PHOTO = getattr(settings,'DEFAULT_PROFILE_PHOTO', 'anonymous-user')
 
@@ -19,7 +18,7 @@ def get_profile_model():
     
    
 class CSAbstractSocialProfile(models.Model):
-    user = models.OneToOneField(User,unique=True)
+    user = models.OneToOneField(AUTH_USER_MODEL,unique=True)
     fullname = models.CharField(_('Full name'), max_length=200, blank=True,null=True)
     bio = models.TextField(_('Biography/description'),null=True,blank=True)
     usertype =  models.PositiveSmallIntegerField(choices = USERTYPE_CHOICES, default = 0)
