@@ -79,5 +79,5 @@ def create_profile(sender, instance, created,**kwargs):
         model = get_profile_model()
         profile,new = model._default_manager.get_or_create(user=instance) 
 from django.db.models.signals import post_save
-post_save.connect(create_profile, sender=User)
+post_save.connect(create_profile, sender=AUTH_USER_MODEL)
 
