@@ -1,7 +1,7 @@
 from django.db import models
 from photologue.models import Photo
 from django.conf import settings
-from django.contrib.auth import User
+from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
 
 #AUTH_PROFILE_MODULE is deprecated in Django 1.6
