@@ -1,6 +1,7 @@
 from django.db import models
 from photologue.models import Photo
 from django.conf import settings
+from django.contrib.auth import User
 from django.utils.translation import ugettext as _
 
 #AUTH_PROFILE_MODULE is deprecated in Django 1.6
@@ -12,20 +13,20 @@ DEFAULT_PROFILE_PHOTO = getattr(settings,'DEFAULT_PROFILE_PHOTO', 'anonymous-use
 
 def get_profile_model():
     """ """
-    app_label, model_name = AUTH_PROFILE_MODULE.split('.') 
+    app_label, model_name = AUTH_PROFILE_MODULE.split('.')
     model = models.get_model(app_label, model_name)
     return model
-    
-   
+
+
 class CSAbstractSocialProfile(models.Model):
-    user = models.OneToOneField(AUTH_USER_MODEL,unique=True)
+    user = models.OneToOneField(User,unique=True)
     fullname = models.CharField(_('Full name'), max_length=200, blank=True,null=True)
     bio = models.TextField(_('Biography/description'),null=True,blank=True)
     usertype =  models.PositiveSmallIntegerField(choices = USERTYPE_CHOICES, default = 0)
-    
+
     added_source = models.PositiveSmallIntegerField(choices = SOURCE_CHOICES, default = 0)
     photo = models.ForeignKey(Photo,null=True, blank=True)
-    
+
     twitter_id = models.CharField(max_length=100, blank=True,null=True)
     facebook_id = models.CharField(max_length=100, blank=True,null=True)
     openid_id = models.CharField(max_length=100, blank=True,null=True)
@@ -58,26 +59,26 @@ class CSAbstractSocialProfile(models.Model):
         if self.fullname:
             return self.fullname
         else:
-            return u'%s' % (self.user.get_full_name()) or self.user.username            
+            return u'%s' % (self.user.get_full_name()) or self.user.username
 
     def __unicode__(self):
         return u'%s' % (self.user.username)
 
     class Meta:
         abstract = True
-        
+
 
 class CSSocialProfile(CSAbstractSocialProfile):
     class Meta:
         verbose_name = 'CS Social profile'
         verbose_name_plural = 'CS Social profiles'
-        
-        
-   
+
+
+
 def create_profile(sender, instance, created,**kwargs):
     if created:
         model = get_profile_model()
-        profile,new = model._default_manager.get_or_create(user=instance) 
+        profile,new = model._default_manager.get_or_create(user=instance)
 from django.db.models.signals import post_save
-post_save.connect(create_profile, sender=AUTH_USER_MODEL)
+post_save.connect(create_profile, sender=User)
 
