@@ -6,7 +6,7 @@ from django.utils.translation import ugettext as _
 
 #AUTH_PROFILE_MODULE is deprecated in Django 1.6
 USERTYPE_CHOICES = getattr(settings,'USERTYPE_CHOICES', ((0,'Erabiltzailea'),(1,'Kidea'),(2,'Nor publikoa'),(3,'Kazetaria'),(4,'Administratzailea')))
-USER_MODEL = getattr(settings,'AUTH_USER_MODEL', 'cssocialprofile.CSSocialProfile')
+USER_MODEL = getattr(settings,'USER_MODEL', 'cssocialprofile.CSSocialProfile')
 SOURCE_CHOICES = ((0,'-'),(1,'Register'),(2,'Twitter'),(3,'Facebook'),(4,'OpenId'),)
 DEFAULT_PROFILE_PHOTO = getattr(settings,'DEFAULT_PROFILE_PHOTO', 'anonymous-user')
 

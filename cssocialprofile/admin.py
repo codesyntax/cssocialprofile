@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.db import models
 from django.conf import settings
 
-USER_MODEL = getattr(settings,'AUTH_USER_MODEL', 'cssocialprofile.CSSocialProfile')
+USER_MODEL = getattr(settings,'USER_MODEL', 'cssocialprofile.CSSocialProfile')
 
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('user', )
