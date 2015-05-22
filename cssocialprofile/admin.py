@@ -11,4 +11,4 @@ class UserProfileAdmin(admin.ModelAdmin):
 app_label, model_name = AUTH_USER_MODEL.split('.')
 model = models.get_model(app_label, model_name)
 
-admin.site.register(model,UserProfileAdmin)
+#admin.site.register(model,UserProfileAdmin)
