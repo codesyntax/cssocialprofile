@@ -13,7 +13,7 @@ DEFAULT_PROFILE_PHOTO = getattr(settings,'DEFAULT_PROFILE_PHOTO', 'anonymous-use
 
 def get_profile_model():
     """ """
-    app_label, model_name = AUTH_PROFILE_MODULE.split('.')
+    app_label, model_name = AUTH_USER_MODEL.split('.')
     model = models.get_model(app_label, model_name)
     return model
 
