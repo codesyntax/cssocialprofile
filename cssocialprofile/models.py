@@ -1,4 +1,5 @@
 from django.db import models
+from django.apps import apps
 from photologue.models import Photo
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -14,7 +15,7 @@ DEFAULT_PROFILE_PHOTO = getattr(settings,'DEFAULT_PROFILE_PHOTO', 'anonymous-use
 def get_profile_model():
     """ """
     app_label, model_name = USER_MODEL.split('.')
-    model = models.get_model(app_label, model_name)
+    model = apps.get_model(app_label, model_name)
     return model
 
 
