@@ -67,6 +67,7 @@ class CSAbstractSocialProfile(models.Model):
 
     class Meta:
         abstract = True
+        app_label = 'CSSocialProfile'
 
 
 class CSSocialProfile(CSAbstractSocialProfile):
