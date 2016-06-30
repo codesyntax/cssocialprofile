@@ -1,4 +1,3 @@
-{% load url from future %}
 {% load i18n %}
 
 {% trans "Hello" %}
@@ -10,4 +9,3 @@
 http://{{site.domain}}{% url 'registration_activate' activation_key=activation_key %}
 
 {% blocktrans with sitename=site.name %}The team at {{ sitename }}.{% endblocktrans %}
-
