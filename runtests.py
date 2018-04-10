@@ -28,8 +28,8 @@ settings.configure(
             'django.contrib.sites',
             'photologue',
             'tweepy',
-            'registration',
             'social_django',
+            'registration',
             'cssocialprofile',
         ),
         TEMPLATES = [
