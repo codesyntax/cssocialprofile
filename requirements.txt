@@ -1,4 +1,4 @@
-social-auth-app-django==2.10
+social-auth-app-django==2.1.0
 django-registration-redux===1.10
 tweepy==3.6.0
 pyfacebook==0.3
