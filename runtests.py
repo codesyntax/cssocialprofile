@@ -29,6 +29,7 @@ settings.configure(
             'photologue',
             'tweepy',
             'registration',
+            'social_django',
             'cssocialprofile',
         ),
         TEMPLATES = [
