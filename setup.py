@@ -21,7 +21,8 @@ setup(name='cssocialprofile',
           'python-social-auth',
           'django-registration-redux',
           'tweepy',
-          'pyfacebook'
+          'pyfacebook',
+          'django-photologue'
       ],
       entry_points="""
       # -*- Entry points: -*-
