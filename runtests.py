@@ -26,6 +26,11 @@ settings.configure(
             'django.contrib.contenttypes',
             'django.contrib.sessions',
             'django.contrib.sites',
+            'photologue',
+            'tweepy',
+            'social_django',
+            'registration',
+            'cssocialprofile',
         ),
         TEMPLATES = [
             {
