@@ -16,7 +16,7 @@ urlpatterns += [
 
 
     url(r'^accounts/', include('registration.backends.default.urls')),
-    url('', include('social.apps.django_app.urls', namespace='social'))
+    url('', include('social_django.urls', namespace='social'))
 ]
 
 #default profile edit urls
