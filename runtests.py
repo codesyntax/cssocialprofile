@@ -26,6 +26,7 @@ settings.configure(
             'django.contrib.contenttypes',
             'django.contrib.sessions',
             'django.contrib.sites',
+            'photologue',
         ),
         TEMPLATES = [
             {
