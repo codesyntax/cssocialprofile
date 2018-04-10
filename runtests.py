@@ -27,6 +27,9 @@ settings.configure(
             'django.contrib.sessions',
             'django.contrib.sites',
             'photologue',
+            'tweepy',
+            'registration',
+            'cssocialprofile',
         ),
         TEMPLATES = [
             {
