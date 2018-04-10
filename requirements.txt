@@ -1,0 +1,5 @@
+python-social-auth==0.3.6,
+django-registration-redux==1.10,
+tweepy==3.6.0,
+pyfacebook==0.3,
+django-photologue==3.8.1
