@@ -20,13 +20,13 @@ def get_profile_model():
 
 
 class CSAbstractSocialProfile(models.Model):
-    user = models.OneToOneField(User,unique=True)
+    user = models.OneToOneField(User,unique=True, on_delete=models.CASCADE)
     fullname = models.CharField(_('Full name'), max_length=200, blank=True,null=True)
     bio = models.TextField(_('Biography/description'),null=True,blank=True)
     usertype =  models.PositiveSmallIntegerField(choices = USERTYPE_CHOICES, default = 0)
 
     added_source = models.PositiveSmallIntegerField(choices = SOURCE_CHOICES, default = 0)
-    photo = models.ForeignKey(Photo,null=True, blank=True)
+    photo = models.ForeignKey(Photo,null=True, blank=True, on_delete=models.CASCADE)
 
     twitter_id = models.CharField(max_length=100, blank=True,null=True)
     facebook_id = models.CharField(max_length=100, blank=True,null=True)
