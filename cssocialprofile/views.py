@@ -28,9 +28,9 @@ def edit_profile(request):
     profile_model = get_profile_model()
     profile = getattr(user,profile_model.__name__.lower())
     if request.method == 'POST':
-         posta=request.POST.copy()     
-         profileform = ProfileForm(posta, instance=profile)
-         if profileform.is_valid():
+        posta=request.POST.copy()     
+        profileform = ProfileForm(posta, instance=profile)
+        if profileform.is_valid():
             profileform.save()
             messages.add_message(request, messages.SUCCESS, _('New user data saved.'), fail_silently=True)    
             return HttpResponseRedirect(reverse('cssocialprofile_edit_profile'))
@@ -40,11 +40,11 @@ def edit_profile(request):
     return render_to_response('profile/edit_personal.html', locals(), context_instance=RequestContext(request))
 
 
-def handle_uploaded_file(f,title):
+def handle_uploaded_file(f, title):
     """ """
     photo = Photo()
     photo.title = u'%s %s' % (title, time_slug_string()) 
-    photo.title_slug = time_slug_string()
+    photo.slug = time_slug_string()
     photo.image = f
     photo.save()
     return photo
