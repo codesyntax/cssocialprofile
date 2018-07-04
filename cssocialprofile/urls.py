@@ -16,14 +16,14 @@ urlpatterns += patterns('',
     #url(r'^accounts/$',TemplateView.as_view(template_name='/')),
 
     (r'^accounts/', include('registration.backends.default.urls')),
-    url('', include('social.apps.django_app.urls', namespace='social'))
+    #url('', include('social.apps.django_app.urls', namespace='social'))
+    url(r'^social/', include('social_django.urls', namespace='social'))
+
 )
 
 #default profile edit urls
 urlpatterns += patterns('cssocialprofile.views',
     url(r'^edit-profile$','edit_profile', name='cssocialprofile_edit_profile'),
-    url(r'^edit-profile-photo$','edit_profile_photo', name='cssocialprofile_edit_profile_photo'),    
-    url(r'^edit-profile-social$','edit_profile_social', name='cssocialprofile_edit_profile_social'),    
+    url(r'^edit-profile-photo$','edit_profile_photo', name='cssocialprofile_edit_profile_photo'),
+    url(r'^edit-profile-social$','edit_profile_social', name='cssocialprofile_edit_profile_social'),
 )
-
-
