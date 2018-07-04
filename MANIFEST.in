@@ -1,2 +1,4 @@
 cssocialprofile.egg-info/
-*.pyc
+recursive-include cssocialprofile *.html
+recursive-include cssocialprofile *.po
+recursive-include cssocialprofile *.txt
