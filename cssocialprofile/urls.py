@@ -11,11 +11,7 @@ urlpatterns += patterns('',
     url(r'^logout$','django.contrib.auth.views.logout', name='cssocialprofile_logout'),
     url(r'^login$','django.contrib.auth.views.login', name='cssocialprofile_user_login'),
 
-    #url(r'^accounts/password/$',TemplateView.as_view(template_name='/')),
-    #url(r'^accounts/$',TemplateView.as_view(template_name='/')),
-
     (r'^accounts/', include('registration.backends.default.urls')),
-    #url('', include('social.apps.django_app.urls', namespace='social'))
     url(r'^social/', include('social_django.urls', namespace='social'))
 
 )
