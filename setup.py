@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import sys, os
 
-version = '3.1.dev0'
+version = '4.1.dev0'
 
 setup(name='cssocialprofile',
       version=version,
@@ -22,7 +22,8 @@ setup(name='cssocialprofile',
           'django-registration-redux',
           'tweepy',
           'pyfacebook',
-          'django-photologue'
+          'django-photologue',
+          'Django>=1.10'
       ],
       entry_points="""
       # -*- Entry points: -*-
