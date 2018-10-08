@@ -12,31 +12,91 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('photologue', '0010_auto_20160105_1307'),
+        ("photologue", "0010_auto_20160105_1307"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='CSSocialProfile',
+            name="CSSocialProfile",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('fullname', models.CharField(blank=True, max_length=200, null=True, verbose_name='Izen osoa')),
-                ('bio', models.TextField(blank=True, null=True, verbose_name='Biografia/deskribapena')),
-                ('usertype', models.PositiveSmallIntegerField(choices=[(0, b'Erabiltzailea'), (1, b'Kidea'), (2, b'Laguntzailea')], default=0)),
-                ('added_source', models.PositiveSmallIntegerField(choices=[(0, b'-'), (1, b'Register'), (2, b'Twitter'), (3, b'Facebook'), (4, b'OpenId')], default=0)),
-                ('twitter_id', models.CharField(blank=True, max_length=100, null=True)),
-                ('facebook_id', models.CharField(blank=True, max_length=100, null=True)),
-                ('openid_id', models.CharField(blank=True, max_length=100, null=True)),
-                ('googleplus_id', models.CharField(blank=True, max_length=100, null=True)),
-                ('added', models.DateTimeField(auto_now_add=True)),
-                ('modified', models.DateTimeField(auto_now=True)),
-                ('photo', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='photologue.Photo')),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "fullname",
+                    models.CharField(
+                        blank=True, max_length=200, null=True, verbose_name="Izen osoa"
+                    ),
+                ),
+                (
+                    "bio",
+                    models.TextField(
+                        blank=True, null=True, verbose_name="Biografia/deskribapena"
+                    ),
+                ),
+                (
+                    "usertype",
+                    models.PositiveSmallIntegerField(
+                        choices=[
+                            (0, b"Erabiltzailea"),
+                            (1, b"Kidea"),
+                            (2, b"Laguntzailea"),
+                        ],
+                        default=0,
+                    ),
+                ),
+                (
+                    "added_source",
+                    models.PositiveSmallIntegerField(
+                        choices=[
+                            (0, b"-"),
+                            (1, b"Register"),
+                            (2, b"Twitter"),
+                            (3, b"Facebook"),
+                            (4, b"OpenId"),
+                        ],
+                        default=0,
+                    ),
+                ),
+                ("twitter_id", models.CharField(blank=True, max_length=100, null=True)),
+                (
+                    "facebook_id",
+                    models.CharField(blank=True, max_length=100, null=True),
+                ),
+                ("openid_id", models.CharField(blank=True, max_length=100, null=True)),
+                (
+                    "googleplus_id",
+                    models.CharField(blank=True, max_length=100, null=True),
+                ),
+                ("added", models.DateTimeField(auto_now_add=True)),
+                ("modified", models.DateTimeField(auto_now=True)),
+                (
+                    "photo",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="photologue.Photo",
+                    ),
+                ),
+                (
+                    "user",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'CS Social profile',
-                'verbose_name_plural': 'CS Social profiles',
+                "verbose_name": "CS Social profile",
+                "verbose_name_plural": "CS Social profiles",
             },
-        ),
+        )
     ]
