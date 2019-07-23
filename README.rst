@@ -8,7 +8,6 @@ CONFIGURATION
 
 Just write this in your settings.py file:
 
-
   SOCIAL_AUTH_PIPELINE = (
       'social_auth.backends.pipeline.social.social_auth_user',
       'social_auth.backends.pipeline.associate.associate_by_email',
@@ -20,4 +19,5 @@ Just write this in your settings.py file:
       'cssocialprofile.pipeline.extra_values.twitter_extra_values',
       'cssocialprofile.pipeline.extra_values.facebook_extra_values',
       'cssocialprofile.pipeline.extra_values.openid_extra_values',
+
   )
