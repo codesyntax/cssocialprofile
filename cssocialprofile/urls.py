@@ -6,6 +6,8 @@ from cssocialprofile.views import edit_profile
 from cssocialprofile.views import edit_profile_photo
 from cssocialprofile.views import edit_profile_social
 
+# default view for our index
+urlpatterns = [url(r"^$", views.index, name="cssocialprofile_index")]
 
 urlpatterns = [
     url(r'^$', index, name="cssocialprofile_index"),
