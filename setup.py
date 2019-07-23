@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import sys, os
 
-version = '4.5.dev0'
+version = '4.5'
 
 setup(name='cssocialprofile',
       version=version,
