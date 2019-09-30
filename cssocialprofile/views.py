@@ -1,5 +1,6 @@
 from django.template import RequestContext
-from django.shortcuts import render_to_response
+from django.shortcuts import render
+
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
@@ -16,7 +17,7 @@ from .models import get_profile_model
 
 def index(request):
     h = {}
-    return render_to_response('cssocialprofile/base.html', h, context_instance=RequestContext(request))
+    return render(request, 'cssocialprofile/base.html', h)
 
 
 
@@ -36,7 +37,7 @@ def edit_profile(request):
     else:
         profileform = ProfileForm(instance=profile)
 
-    return render_to_response('profile/edit_personal.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'profile/edit_personal.html', locals())
 
 
 def handle_uploaded_file(f, title):
@@ -63,7 +64,7 @@ def edit_profile_photo(request):
 
     else:
         form = ProfilePhotoForm()
-    return render_to_response('profile/edit_photo.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'profile/edit_photo.html', locals())
 
 
 @login_required
@@ -72,4 +73,4 @@ def edit_profile_social(request):
     user = request.user
     profile_model = get_profile_model()
     profile = getattr(user, profile_model.__name__.lower())
-    return render_to_response('profile/edit_social.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'profile/edit_social.html', locals())
